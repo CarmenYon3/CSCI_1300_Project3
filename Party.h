@@ -11,7 +11,7 @@ class Party{
         int wheels;
         int axles;
         int tongues;
-        int money;
+        double money;
         int medKits;
         std::string partyMembers[4];
         std::string name;

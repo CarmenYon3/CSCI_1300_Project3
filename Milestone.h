@@ -5,6 +5,8 @@
 class Store{
     public:
         int readMileStones();
+        int getMilesTraveled();
+        int intSetMilesTraveled(int );
     private:
         static const int NUM_MILESTONES = 15;
         int milesTraveled;

@@ -3,15 +3,15 @@
 #include <iostream>
 class Store{
     public:
-
+        
     private:
         int storeNum;
         int priceMultiplier;
-        int foodPrice;
+        double foodPrice;
         int oxenPrice;
         int bulletsPrice;
         int wagonPrice;
-        int currentBill;
+        double currentBill;
         int medKitPrice;
 };
 #endif
