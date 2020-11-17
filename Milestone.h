@@ -2,15 +2,18 @@
 #ifdef MILESTONE_H
 #include <iostream>
 
-class Store{
+class Milestone{
     public:
-        int readMileStones();
+        Milestone();
+        int readMileStones(std::string fileName);
         int getMilesTraveled();
-        int intSetMilesTraveled(int );
+        void setMilesTraveled(int miles);
+        std::string getNextMilestoneName();
+        int getNextMilestoneDist();
     private:
         static const int NUM_MILESTONES = 15;
         int milesTraveled;
         int milestoneDist[NUM_MILESTONES];
-        int mileStoneName[NUM_MILESTONES];
+        std::string milestoneName[NUM_MILESTONES];
 };
 #endif

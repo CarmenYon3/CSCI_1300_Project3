@@ -8,11 +8,12 @@ class Time{
         int getDay();
         int getMonth();
         int getYear();
-        int addDays();
+        void addDays(int days);
     private:
+        static const int NUM_MONTHS = 12;
         int day;
         int month;
         int year;
-        int daysInMonth[];
+        int daysInMonth[12];
 };
 #endif
