@@ -3,7 +3,34 @@
 #include <iostream>
 class Party{
     public:
+        Party();
+        Party(std::string name, std::string partyMembers[4]);
 
+        int getOxen();
+        void setOxen(int oxen);
+
+        int getFood();
+        void setFood(int food);
+
+        int getBullets();
+        void setBullets(int bullets);
+
+        int getWheels();
+        void setWheels(int wheels);
+
+        int getAxles();
+        void setAxles(int axles);
+
+        int getTongues();
+        void setTongues(int tongues);
+
+        double getMoney();
+        void setMoney(double money);
+
+        int getMedKits();
+        void setMedKits(int medKits);
+
+        
     private:
         int oxen;
         int food;

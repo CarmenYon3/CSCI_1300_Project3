@@ -15,7 +15,7 @@ int main(){
  * @return 1 if party runs, 2 if party attacks and wins, 3 if party attacks and loses, 4 if party surrenders
  */
 int raiderAttack(Party &party){
-
+    
 }
 
 
