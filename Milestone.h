@@ -5,15 +5,13 @@
 class Milestone{
     public:
         Milestone();
-        int readMileStones(std::string fileName);
-        int getMilesTraveled();
-        void setMilesTraveled(int miles);
-        std::string getNextMilestoneName();
-        int getNextMilestoneDist();
+        Milestone(int distance, std::string name);
+        int getDistance();
+        std::string getName();
+        void setDistance(int distance);
+        void setName(std::string name);
     private:
-        static const int NUM_MILESTONES = 15;
-        int milesTraveled;
-        int milestoneDist[NUM_MILESTONES];
-        std::string milestoneName[NUM_MILESTONES];
+        int distance;
+        std::string name;
 };
 #endif

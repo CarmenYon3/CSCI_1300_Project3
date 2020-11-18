@@ -1,63 +1,47 @@
 #include "Milestone.h"
-#include <iostream>
 
 /**
- * Default constructor for the milestone class. Sets the initial miles traveled to 0 and each milestone name and value to and empty string and 0
+ * Default constructor for milestone
+ * sets name and dist to 0
  */
 Milestone::Milestone(){
-    milesTraveled = 0;
-    for(int i = 0; i < NUM_MILESTONES; i++){
-        milestoneDist[i] = 0;
-        milestoneName[i] = "";
-    }
+    name = "";
+    distance = 0;
+}
+/**
+ * Parameterized constductor for milestone
+ * @param distance distance to be set 
+ * @param name name to be set
+ */
+Milestone::Milestone(int distance, std::string name){
+    this->distance = distance;
+    this->name = name;
+
+}
+/**
+ * @return distance of the milestone
+ */
+int Milestone::getDistance(){
+    return distance;
 }
 
 /**
- * Takes a name of a file as a parameter, and reads pre-formatted data containing milestone names and distances, and stores it in
- * the member arrays. Includes specific return values if the file-reading process fails in some way.
- * @param fileName name of file to be read from
- * @return -1 if filename can't be found, 0 if success, or 1 if the file is formatted incorrectly
+ * @return name of the milestone
  */
-int Milestone::readMileStones(std::string fileName){
-
-}
-
-/**
- * @return number of miles traveled
- */
-int Milestone::getMilesTraveled(){
-    return milesTraveled;
-}
-
-/**
- * sets the number of miles traveled
- * @param miles the number of miles traveled
- */
-void Milestone::setMilesTraveled(int miles){
-    milesTraveled = miles;
+std::string Milestone::getName(){
+    return name;
 }
 /**
- * @return the distance to the next milestone
+ * setter for distance
+ * @param distance distance to be set
  */
-int Milestone::getNextMilestoneDist(){
-    int milestoneIndex = 0;
-    for(int i = 0; i < NUM_MILESTONES; i++){
-        if(milesTraveled < milestoneDist[i]){
-            milestoneIndex = i;
-        }
-
-    return milestoneDist[milestoneIndex] - milesTraveled;
-    }
+void Milestone::setDistance(int distance){
+    this->distance = distance;
 }
-
 /**
- * @return the name of the next milestone
+ * setter for name 
+ * @param name name to be set
  */
-std::string Milestone::getNextMilestoneName(){
-    int milestoneIndex = 0;
-    for(int i = 0; i < NUM_MILESTONES; i++){
-        if(milesTraveled < milestoneDist[i]){
-            milestoneIndex = i;
-        }
-    return milestoneName[milestoneIndex];
+void Milestone::setName(std::string name){
+    this->name = name;
 }
