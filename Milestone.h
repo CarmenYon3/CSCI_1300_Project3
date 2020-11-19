@@ -1,3 +1,5 @@
+// Peter Ashmore & Michael Yon
+
 #define MILESTONE_H
 #ifdef MILESTONE_H
 #include <iostream>

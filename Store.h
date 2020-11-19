@@ -1,3 +1,5 @@
+// Peter Ashmore & Michael Yon
+
 #define STORE_H
 #ifdef STORE_H
 #include <iostream>

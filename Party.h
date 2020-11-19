@@ -1,3 +1,5 @@
+// Peter Ashmore & Michael Yon
+
 #define PARTY_H
 #ifdef PARTY_H
 #include <iostream>

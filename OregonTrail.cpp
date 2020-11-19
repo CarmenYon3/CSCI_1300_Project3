@@ -1,3 +1,5 @@
+// Peter Ashmore & Michael Yon
+
 #include <iostream>
 #include <iomanip>
 #include "Time.h"

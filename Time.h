@@ -1,3 +1,5 @@
+// Peter Ashmore & Michael Yon
+
 #define TIME_H
 #ifdef TIME_H
 
