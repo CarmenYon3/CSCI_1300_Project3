@@ -30,6 +30,9 @@ class Party{
         int getMedKits();
         void setMedKits(int medKits);
 
+        bool getPartyLifeAt(int index);
+        void setPartyLifeAt(int index, bool value);
+
         
     private:
         int oxen;
@@ -42,6 +45,6 @@ class Party{
         int medKits;
         std::string partyMembers[4];
         std::string name;
-
+        bool partyLife[4];
 };
 #endif

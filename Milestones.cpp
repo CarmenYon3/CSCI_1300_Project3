@@ -44,6 +44,7 @@ int Milestones::getNextMilestoneDist(){
     for(int i = 0; i < NUM_MILESTONES; i++){
         if(milesTraveled < milestones[i].getDistance()){
             milestoneIndex = i;
+            break;
         }
 
     return milestones[milestoneIndex].getDistance() - milesTraveled;
@@ -58,6 +59,7 @@ std::string Milestones::getNextMilestoneName(){
     for(int i = 0; i < NUM_MILESTONES; i++){
         if(milesTraveled < milestones[i].getDistance()){
             milestoneIndex = i;
+            break;
         }
     return milestones[milestoneIndex].getName();
 }

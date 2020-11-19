@@ -184,4 +184,19 @@ void Party::setMedKits(int newMedKits){
 
     medKits = newMedKits;
 }
+/**
+ * @param index index of the party member
+ * @return If the party member at index is alive or not
+ */
+bool Party::getPartyLifeAt(int index){
+    return partyLife[index];
+}
+/**
+ * setter for the life of party members at index
+ * @param index index of the party member
+ * @param value if the party member at said index is alive or not
+ */
+void Party::setPartyLifeAt(int index, bool value){
+    partyLife[index] = value;
+}
 
