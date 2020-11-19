@@ -4,6 +4,8 @@
 #include "Party.h"
 #include "Store.h"
 #include "Milestone.h"
+#include "Milestones.h"
+#include <vector>
 
 
 int main(){
@@ -65,5 +67,25 @@ void mosfortune(Party &party, Time &time){
  * @return true if the puzzle is solved, false if not
  */
 bool puzzle(){
+
+}
+/**
+ * Writes the score at the end of the game to a high score list
+ * pass the file into a vector, sorts vector using bubble sort, rewrites file using new vector
+ * file being written to will contain previous runs high scores
+ * @param party party taken as input (reference)
+ * @param time store taken as input (reference)
+ * @param milestones milestones object taken as input (reference)
+ */
+void writeResults(Party &party, Time &time, Milestones &milestones){
+
+}
+/**
+ * Take two vectors of scores and names as input,
+ * Use bubble sort to sort the int vector, and perform the same operations on name to maintain the same pairings
+ * @param scores vec of high scores to be sorted
+ * @param name vec of names to be sorted
+ */
+void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &name){
 
 }
