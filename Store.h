@@ -4,14 +4,28 @@
 class Store{
     public:
         
+        Store();
+        Store(int storeNum);
+
+        int getStoreNum();
+
+        double getFoodPrice();
+        
+        int getOxenPrice();
+
+        int getBulletsPrice();
+
+        int getWagonPrice();
+
+        int getMedKitPrice();
+
     private:
+
         int storeNum;
-        int priceMultiplier;
         double foodPrice;
         int oxenPrice;
         int bulletsPrice;
         int wagonPrice;
-        double currentBill;
         int medKitPrice;
 };
 #endif
