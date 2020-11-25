@@ -22,8 +22,12 @@ Time::Time(){
     daysInMonth[10] = 30;
     daysInMonth[11] = 31;
 }
-
-Time::Time(int day, int month, int year, int daysInMonth[]){
+/**
+ * @param day day to start at
+ * @param month month to start at year -1
+ * @param year year to start at
+ */
+Time::Time(int day, int month, int year){
     this->day = day;
     this->month = month;
     this->year = year;
@@ -52,7 +56,7 @@ int Time::getDay(){
  * @return month of the year
  */
 int Time::getMonth(){
-    return year;
+    return month;
 }
 /**
  * @return the year
@@ -65,5 +69,26 @@ int Time::getYear(){
  * @param days days to be added to the date
  */
 void Time::addDays(int days){
-    
+    if((days + day) > daysInMonth[month]){
+        if(month == 11){
+            month = 0;
+            day = (days + day) % daysInMonth[month];
+            year++;
+        }
+        else{
+            month++;
+            day = (days + day) % daysInMonth[month];
+        }
+    }
+    else{
+        day += days;
+    }
 }
+/* tester for add days */
+// int main(){
+//     Time test  = Time(29,11,1894);
+//     std::cout << test.getDay() << " " << test.getMonth() << " " << test.getYear() << std::endl;
+//     test.addDays(12);
+//     std::cout << test.getDay() << " " << test.getMonth() << " " << test.getYear() << std::endl;
+//     return 0;
+// }

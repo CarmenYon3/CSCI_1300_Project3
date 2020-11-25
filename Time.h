@@ -6,7 +6,7 @@
 class Time{
     public:
         Time();
-        Time(int day, int month, int year, int daysInMonth[]);
+        Time(int day, int month, int year);
         int getDay();
         int getMonth();
         int getYear();
