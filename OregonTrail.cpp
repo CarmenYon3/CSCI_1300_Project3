@@ -34,7 +34,244 @@ void raiderAttack(Party &party){
  * @param time time taken as input (reference)
  */
 void hunt(Party &party, Time &time){
-    if(randomNumberGenerator(0,1))
+    int food = 0;
+    if(randomNumberGenerator(0,1) == 0){    
+        while(true){
+            std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A RABBIT! DO YOU WANT TO HUNT: " << std::endl;
+            std::cout << "(1) YES, (2) NO" << std::endl;
+            int temp; 
+            std::cin >> temp;
+            if(temp == 1){
+                if(party.getBullets() >= 10){
+                    std::cout << "YOU MUST SOLVE A PUZZLE TO HAVE A SUCCESSFUL HUNT: " << std::endl;
+                    bool outcome = puzzle();
+                    if(outcome){
+                        std::cout << "THE HUNT WAS SUCCESSFUL" << std::endl;
+                        std::cout << "YOU USED 10 BULLETS AND GOT 5 LBS OF FOOD" << std::endl;
+                        party.setBullets(party.getBullets() - 10);
+                        food += 5;
+                        break;
+                    }
+                    else{
+                        std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                        break;
+                    }
+                }
+                else{
+                    std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                    break;
+                }
+            }
+            else if(temp == 2){
+                break;
+            }
+            else{
+                std::cout << "invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
+    if(randomNumberGenerator(0,4) == 0){    
+        while(true){
+            std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A FOX! DO YOU WANT TO HUNT: " << std::endl;
+            std::cout << "(1) YES, (2) NO" << std::endl;
+            int temp; 
+            std::cin >> temp;
+            if(temp == 1){
+                if(party.getBullets() >= 10){
+                    std::cout << "YOU MUST SOLVE A PUZZLE TO HAVE A SUCCESSFUL HUNT: " << std::endl;
+                    bool outcome = puzzle();
+                    if(outcome){
+                        std::cout << "THE HUNT WAS SUCCESSFUL" << std::endl;
+                        std::cout << "YOU USED 8 BULLETS AND GOT 10 LBS of FOOD" << std::endl;
+                        party.setBullets(party.getBullets() - 8);
+                        food += 10;
+                        break;
+                    }
+                    else{
+                        std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                        break;
+                    }
+                }
+                else{
+                    std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                    break;
+                }
+            }
+            else if(temp == 2){
+                break;
+            }
+            else{
+                std::cout << "invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
+    if(randomNumberGenerator(0,100) <= 14){    
+        while(true){
+            std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A DEER! DO YOU WANT TO HUNT: " << std::endl;
+            std::cout << "(1) YES, (2) NO" << std::endl;
+            int temp; 
+            std::cin >> temp;
+            if(temp == 1){
+                if(party.getBullets() >= 10){
+                    std::cout << "YOU MUST SOLVE A PUZZLE TO HAVE A SUCCESSFUL HUNT: " << std::endl;
+                    bool outcome = puzzle();
+                    if(outcome){
+                        std::cout << "THE HUNT WAS SUCCESSFUL" << std::endl;
+                        std::cout << "YOU USED 5 BULLETS AND GOT 60 LBS of FOOD" << std::endl;
+                        party.setBullets(party.getBullets() - 5);
+                        food += 60;
+                        break;
+                    }
+                    else{
+                        std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                        break;
+                    }
+                }
+                else{
+                    std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                    break;
+                }
+            }
+            else if(temp == 2){
+                break;
+            }
+            else{
+                std::cout << "invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
+    if(randomNumberGenerator(0,100) <= 6){    
+        while(true){
+            std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A BEAR! DO YOU WANT TO HUNT: " << std::endl;
+            std::cout << "(1) YES, (2) NO" << std::endl;
+            int temp; 
+            std::cin >> temp;
+            if(temp == 1){
+                if(party.getBullets() >= 10){
+                    std::cout << "YOU MUST SOLVE A PUZZLE TO HAVE A SUCCESSFUL HUNT: " << std::endl;
+                    bool outcome = puzzle();
+                    if(outcome){
+                        std::cout << "THE HUNT WAS SUCCESSFUL" << std::endl;
+                        std::cout << "YOU USED 10 BULLETS AND GOT 200 LBS of FOOD" << std::endl;
+                        party.setBullets(party.getBullets() - 10);
+                        food += 200;
+                        break;
+                    }
+                    else{
+                        std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                        break;
+                    }
+                }
+                else{
+                    std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                    break;
+                }
+            }
+            else if(temp == 2){
+                break;
+            }
+            else{
+                std::cout << "invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
+    if(randomNumberGenerator(0,100) <= 5){    
+        while(true){
+            std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A MOOSE! DO YOU WANT TO HUNT: " << std::endl;
+            std::cout << "(1) YES, (2) NO" << std::endl;
+            int temp; 
+            std::cin >> temp;
+            if(temp == 1){
+                if(party.getBullets() >= 10){
+                    std::cout << "YOU MUST SOLVE A PUZZLE TO HAVE A SUCCESSFUL HUNT: " << std::endl;
+                    bool outcome = puzzle();
+                    if(outcome){
+                        std::cout << "THE HUNT WAS SUCCESSFUL" << std::endl;
+                        std::cout << "YOU USED 12 BULLETS AND GOT 500 LBS of FOOD" << std::endl;
+                        party.setBullets(party.getBullets() - 12);
+                        food += 500;
+                        break;
+                    }
+                    else{
+                        std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                        break;
+                    }
+                }
+                else{
+                    std::cout << "THE HUNT WAS UNSUCCESSFUL" << std::endl;
+                    break;
+                }
+            }
+            else if(temp == 2){
+                break;
+            }
+            else{
+                std::cout << "invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
+    std::cout << "HOW WOULD YOU LIKE TO EAT?" << std::endl;
+    std::cout << "(1) POORLY: 2 lbs food, per person" << std::endl;
+    std::cout << "(2) MODERATELY: 3 lbs food, per person" << std::endl;
+    std::cout << "(3) WELL: 5 lbs food, per person" << std::endl;
+    
+    while(true){
+        int choice;
+        std::cin >> choice;
+        if(choice == 1){
+            party.setFood(party.getFood() - 2);
+            for(int i = 0; i < 4; i++){
+                if(party.getPartyLifeAt(i) == true){
+                    party.setFood(party.getFood() - 2);
+                }
+            }
+            break;
+        }
+        else if(choice == 2){
+            party.setFood(party.getFood() - 3);
+            for(int i = 0; i < 4; i++){
+                if(party.getPartyLifeAt(i) == true){
+                    party.setFood(party.getFood() - 3);
+                }
+            }
+            break;
+        }
+        else if(choice == 3){
+            party.setFood(party.getFood() - 5);
+            for(int i = 0; i < 4; i++){
+                if(party.getPartyLifeAt(i) == true){
+                    party.setFood(party.getFood() - 5);
+                }
+            }
+            break;
+        }
+        else{
+            std::cout << "invalid input, try again" << std::endl;
+            continue;
+        }
+    }
+
+    std::cout << "YOU HAVE GATHERED " << food << " LBS OF FOOD FROM HUNTING" << std::endl;
+
+    if((food + party.getFood()) > 1000){
+        std::cout << "YOUR WAGON DOES NOT HAVE ENOUGH ROOM. YOU HAVE 1000 LBS OF FOOD, AND YOU LEAVE THE REST BEHIND" << std::endl;
+        party.setFood(1000); 
+    }
+    else{
+        std::cout << "YOU NOW HAVE " << food  + party.getFood() << " LBS OF FOOD" << std::endl;
+        party.setFood(food + party.getFood()); 
+    }
+
 }
 
 /**
