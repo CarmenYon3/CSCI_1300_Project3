@@ -5,18 +5,14 @@
 #include "Time.h"
 #include "Party.h"
 #include "Store.h"
-#include "Milestone.h"
 #include "Milestones.h"
 #include <vector>
 #include <cstdlib>
 
 
-int main(){
-    std::cout << puzzle() << std::endl;
-}
+
 
 int randomNumberGenerator (int rand_min, int rand_max){
-
     int rng = rand() % rand_max + rand_min;
     return rng;
 }
@@ -38,7 +34,7 @@ void raiderAttack(Party &party){
  * @param time time taken as input (reference)
  */
 void hunt(Party &party, Time &time){
-
+    if(randomNumberGenerator(0,1))
 }
 
 /**
@@ -76,15 +72,18 @@ void misfortune(Party &party, Time &time){
  * @return true if the puzzle is solved, false if not
  */
 bool puzzle(){
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < 3; i++){
         std::cout << "Pick a number between 1 and 10" << std::endl;
         int temp;
         std::cin >> temp;
-        if(temp == randomNumberGenerator(0,10)){
+        int temp1 = randomNumberGenerator(0,10);
+        if(temp == temp1){
+            std::cout << "num was " << temp1 << std::endl;
             return true;
         }
         else{
             std::cout << "try again stinky" << std::endl;
+            std::cout << "num was " << temp1 << std::endl;
         }
     }
     return false;
@@ -128,3 +127,7 @@ void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &nam
  * @param rand_max maximum value of random number
  * @return the number generated 
 */
+
+int main(){
+
+}
