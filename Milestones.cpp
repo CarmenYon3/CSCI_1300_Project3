@@ -2,6 +2,8 @@
 
 #include "Milestones.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 
 /**
  * Default constructor for the milestone class. Sets the initial miles traveled to 0 and each milestone name and value to and empty string and 0
@@ -21,7 +23,23 @@ Milestones::Milestones(){
  * @return -1 if filename can't be found, 0 if success, or 1 if the file is formatted incorrectly
  */
 int Milestones::readMileStones(std::string fileName){
+    std::string line = "";
+    std::ifstream inFile;
+    inFile.open(fileName);
 
+    if(inFile.fail() == false){
+        int count = 0;
+        while(getline(inFile,line)){
+            milestones[count].setName(line);
+            getline(inFile,line);
+            milestones[count].setDistance(stoi(line));
+            count++;
+        }
+        return 0;
+    }
+    else{
+        return -1;
+    }
 }
 
 /**
@@ -48,9 +66,8 @@ int Milestones::getNextMilestoneDist(){
             milestoneIndex = i;
             break;
         }
-
-    return milestones[milestoneIndex].getDistance() - milesTraveled;
     }
+    return milestones[milestoneIndex].getDistance() - milesTraveled;
 }
 
 /**
@@ -63,5 +80,22 @@ std::string Milestones::getNextMilestoneName(){
             milestoneIndex = i;
             break;
         }
+    }
     return milestones[milestoneIndex].getName();
 }
+
+std::string Milestones::getNameAt(int index){
+    return milestones[index].getName();
+}
+
+int Milestones::getDistAt(int index){
+    return milestones[index].getDistance();
+}
+
+// int main(){
+//     Milestones test = Milestones();
+//     std::cout << test.readMileStones("milestones.txt") << std::endl;
+//     for(int i = 0; i < 14; i++){
+//         std::cout << test.getNameAt(i) << std::endl;
+//     }
+// }

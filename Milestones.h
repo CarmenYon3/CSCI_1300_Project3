@@ -13,6 +13,8 @@ class Milestones{
         void setMilesTraveled(int miles);
         std::string getNextMilestoneName();
         int getNextMilestoneDist();
+        std::string getNameAt(int index);
+        int getDistAt(int index);
     private:
         static const int NUM_MILESTONES = 15;
         int milesTraveled;
