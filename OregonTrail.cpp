@@ -8,6 +8,7 @@
 #include "Milestone.h"
 #include "Milestones.h"
 #include <vector>
+#include <cstdlib>
 
 
 int main(){
@@ -90,4 +91,16 @@ void writeResults(Party &party, Time &time, Milestones &milestones){
  */
 void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &name){
 
+}
+
+/**
+ * Takes a minimum and maximum value and returns a random number within that range
+ * @param rand_min minimum value of random number
+ * @param rand_max maximum value of random number
+ * @return the number generated 
+*/
+int randomNumberGenerator (int rand_min, int rand_max){
+
+    int rng = rand() % rand_max + rand_min;
+    return rng;
 }
