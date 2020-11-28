@@ -13,11 +13,11 @@ class Store{
 
         double getFoodPrice();
         
-        int getOxenPrice();
+        int getOxenYokePrice();
 
-        int getBulletsPrice();
+        int getBulletsBoxPrice();
 
-        int getWagonPrice();
+        int getWagonPartsPrice();
 
         int getMedKitPrice();
 
@@ -25,9 +25,9 @@ class Store{
 
         int storeNum;
         double foodPrice;
-        int oxenPrice;
-        int bulletsPrice;
-        int wagonPrice;
+        int oxenYokePrice;
+        int bulletsBoxPrice;
+        int wagonPartsPrice;
         int medKitPrice;
 };
 #endif
