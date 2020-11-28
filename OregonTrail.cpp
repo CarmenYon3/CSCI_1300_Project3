@@ -12,7 +12,13 @@
 
 
 int main(){
+    std::cout << puzzle() << std::endl;
+}
 
+int randomNumberGenerator (int rand_min, int rand_max){
+
+    int rng = rand() % rand_max + rand_min;
+    return rng;
 }
 
 /**
@@ -70,7 +76,18 @@ void mosfortune(Party &party, Time &time){
  * @return true if the puzzle is solved, false if not
  */
 bool puzzle(){
-
+    for(int i = 0; i < 2; i++){
+        std::cout << "Pick a number between 1 and 10" << std::endl;
+        int temp;
+        std::cin >> temp;
+        if(temp == randomNumberGenerator(0,10)){
+            return true;
+        }
+        else{
+            std::cout << "try again stinky" << std::endl;
+        }
+    }
+    return false;
 }
 /**
  * Writes the score at the end of the game to a high score list
@@ -90,7 +107,19 @@ void writeResults(Party &party, Time &time, Milestones &milestones){
  * @param name vec of names to be sorted
  */
 void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &name){
-
+    bool swap;
+    for(int i = 0; i < scores.size()-1; i++){
+        for(int j = 0; j < scores.size()-i-1; j++){
+                if(scores[j] > scores[j+1]){
+                    int temp1 = scores[j];
+                    std::string temp2 = name[j];
+                    scores[j] = scores[j+1];
+                    name[j] = name[j+1];
+                    scores[j+1] = temp1;
+                    name[j+1]  = temp2;
+            }
+        }
+    }
 }
 
 /**
@@ -99,8 +128,3 @@ void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &nam
  * @param rand_max maximum value of random number
  * @return the number generated 
 */
-int randomNumberGenerator (int rand_min, int rand_max){
-
-    int rng = rand() % rand_max + rand_min;
-    return rng;
-}

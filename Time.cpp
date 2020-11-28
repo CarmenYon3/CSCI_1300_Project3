@@ -71,13 +71,13 @@ int Time::getYear(){
 void Time::addDays(int days){
     if((days + day) > daysInMonth[month]){
         if(month == 11){
-            month = 0;
             day = (days + day) % daysInMonth[month];
+            month = 0;
             year++;
         }
         else{
-            month++;
             day = (days + day) % daysInMonth[month];
+            month++;
         }
     }
     else{
