@@ -283,8 +283,58 @@ void hunt(Party &party, Time &time){
  */
 void shop(Party &party, Store &store){
 
-}
+    double oxenBill = 0.00;
+    double foodBill = 0.00;
+    double bulletsBill = 0.00;
+    double miscSuppliesBill = 0.00;
+    double totalBill = oxenBill + foodBill + bulletsBill + miscSuppliesBill;
+    int choice = 0;
 
+    while (true){
+        std::cout << "============================================" << std::endl;
+        std::cout << "               General Store                " << std::endl;
+        std::cout << "============================================" << std::endl;
+        std::cout << "1. Oxen                           $" << oxenBill << std::endl;
+        std::cout << "2. Food                           $" << foodBill << std::endl;
+        std::cout << "3. Bullets                        $" << bulletsBill << std::endl;
+        std::cout << "4. Miscellaneous Supplies         $" << miscSuppliesBill << std::endl;
+        std::cout << "============================================" << std::endl;
+        std::cout << "                      Total bill: $" << totalBill << std::endl;
+        std::cout << std::endl;
+        std::cout << "Amount you have: " << party.getMoney() << std::endl;
+        std::cout << std::endl;
+        std::cout << "Which item would you like to buy?" << std::endl;
+        std::cin >> choice;
+
+        if (choice == 1){
+
+
+        }
+        else if (choice == 2){
+
+
+        }
+        else if (choice == 3){
+
+
+        }
+        else if (choice == 4){
+
+
+        }
+        else if (choice == 5){
+
+            std::cout << "Total bill: $" << totalBill << std::endl;
+            party.setMoney(party.getMoney() - totalBill);
+            break;
+        }
+        else{
+
+            std::cout << "Invalid input" << std::endl;
+            continue;
+        }
+    }
+    
 /**
  * Called when the player chooses to rest
  * adjust time and party stats accordingly

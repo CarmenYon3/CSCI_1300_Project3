@@ -14,10 +14,10 @@ Store::Store(){
     storeNum = 0;
     
     foodPrice = 0.50;
-    oxenYokePrice = 40;
-    bulletsBoxPrice = 2;
-    wagonPartsPrice = 20;
-    medKitPrice = 25;
+    oxenYokePrice = 40.00;
+    bulletsBoxPrice = 2.00;
+    wagonPartsPrice = 20.00;
+    medKitPrice = 25.00;
 
 }
 
@@ -31,10 +31,10 @@ Store::Store(int newStoreNum){
     storeNum = newStoreNum;
 
     foodPrice = 0.50;
-    oxenYokePrice = 40;
-    bulletsBoxPrice = 2;
-    wagonPartsPrice = 20;
-    medKitPrice = 25;
+    oxenYokePrice = 40.00;
+    bulletsBoxPrice = 2.00;
+    wagonPartsPrice = 20.00;
+    medKitPrice = 25.00;
     
 }
 
