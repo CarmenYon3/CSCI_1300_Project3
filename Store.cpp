@@ -12,6 +12,13 @@
 Store::Store(){
 
     storeNum = 0;
+    
+    foodPrice = 0.50;
+    oxenYokePrice = 40;
+    bulletsBoxPrice = 2;
+    wagonPartsPrice = 20;
+    medKitPrice = 25;
+
 }
 
 /**
@@ -22,6 +29,13 @@ Store::Store(){
 Store::Store(int newStoreNum){
 
     storeNum = newStoreNum;
+
+    foodPrice = 0.50;
+    oxenYokePrice = 40;
+    bulletsBoxPrice = 2;
+    wagonPartsPrice = 20;
+    medKitPrice = 25;
+    
 }
 
 /**
@@ -43,30 +57,30 @@ double Store::getFoodPrice(){
 }
 
 /**
- * @return returns oxen price
+ * @return returns oxen yoke price
  */
 
-int Store::getOxenPrice(){
+int Store::getOxenYokePrice(){
 
-    return oxenPrice * (1 + (0.25 * storeNum));
+    return oxenYokePrice * (1 + (0.25 * storeNum));
 }
 
 /**
- * @return returns price of bullets
+ * @return returns price of bullets box
  */
 
-int Store::getBulletsPrice(){
+int Store::getBulletsBoxPrice(){
 
-    return bulletsPrice * (1 + (0.25 * storeNum));
+    return bulletsBoxPrice * (1 + (0.25 * storeNum));
 }
 
 /**
  * @return returns wagon parts price
  */
 
-int Store::getWagonPrice(){
+int Store::getWagonPartsPrice(){
 
-    return wagonPrice * (1 + (0.25 * storeNum));
+    return wagonPartsPrice * (1 + (0.25 * storeNum));
 }
 
 /**
