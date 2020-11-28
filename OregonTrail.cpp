@@ -62,12 +62,12 @@ void rest(Party &party,Time &time){
 
 }
 /**
- * called whenever a misfortume might happen
+ * called whenever a misfortune might happen
  * adjusts party and time stats according to the misfortune that has occoured
  * @param party party taken as input (reference)
  * @param time store taken as input (reference)
  */
-void mosfortune(Party &party, Time &time){
+void misfortune(Party &party, Time &time){
 
 }
 
