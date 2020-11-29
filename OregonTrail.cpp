@@ -11,6 +11,7 @@
 
 
 
+bool puzzle();
 
 int randomNumberGenerator (int rand_min, int rand_max){
     int rng = rand() % rand_max + rand_min;
@@ -18,11 +19,76 @@ int randomNumberGenerator (int rand_min, int rand_max){
 }
 
 /**
- * Called if a raider attack occours, affects party stats according to the outcome of the raid
+ * Called when a raider attack might occour, affects party stats according to the outcome of the raid
  * @param party the party taken as input (reference)
  */
-void raiderAttack(Party &party){
-    
+void raiderAttack(Party &party,Milestones & milestones){
+
+    double miles = milestones.getMilesTraveled(); //gets miles so the expression is simpler
+    int probability = ((( pow(((miles / 100.0)-4.0),2) + 72.0 ) / ( pow(((miles / 100.0)-4.0),2) + 12.0 )) -1.0) / 0.1 ; //calculated probability
+
+    if(randomNumberGenerator(1,100) <= probability){//raider attack happens
+        while(true){
+            std::cout << "RIDERS AHEAD! THEY LOOK HOSTILE!" << std::endl;
+            std::cout << "(1) RUN" << std::endl;
+            std::cout << "(2) ATTACK" << std::endl;
+            std::cout << "(3) SURRENDER" << std::endl;
+
+            int choice;
+            std::cin >> choice;
+
+            if(choice == 1){
+                std::cout << "YOUR PARTY ESCAPES, BUT IN THE HURRY TO FLEE, YOU LEAVE BEHIND 1 OXEN, 10LBS OF FOOD, AND 1 WAGON PART" << std::endl;
+                party.setOxen(party.getOxen() - 1);//ox -1
+                party.setFood(party.getFood() - 10);//food -10
+
+                //lose 1 wagon part
+                if(party.getAxles() > 0){
+                    party.setAxles(party.getAxles() -1);
+                }
+                else if(party.getTongues() > 0){
+                    party.setTongues(party.getTongues() -1);                  
+                }
+                else if(party.getWheels() > 0){
+                    party.setWheels(party.getWheels() -1);                  
+                }
+
+                break;
+            }
+            else if(choice == 2){
+                std::cout << "YOU MUST WIN A PUZZLE TO WIN THE BATTLE" << std:: endl;
+                if(puzzle()){
+                    std::cout << "YOU WON THE BATTLE, AND GAINED 50 LBS OF FOOD AND 50 BULLETS" << std:: endl;
+                    party.setFood(party.getFood() + 50);
+                    party.setBullets(party.getBullets() + 50);
+                    break;
+                }
+                else{
+
+                    std::cout << "YOU LOST THE BATTLE, AND LOST A QUARTER OF YOUR CASH AND 50 BULLETS" << std:: endl;
+                    if(party.getBullets() >= 50){
+                        party.setBullets(party.getBullets() - 50);
+                    }
+                    else{
+                        party.setBullets(0);
+                    }
+
+                    party.setMoney(party.getMoney() * 0.75);
+                    break;
+                }
+            }
+            else if(choice == 3){
+                std::cout << "YOU SURRENDER, AND LOSE A QUARTER OF YOUR CASH" << std:: endl;
+                party.setMoney(party.getMoney() * 0.75);
+                break;
+            }
+            else{
+                std::cout << "Invalid input, try again" << std::endl;
+                continue;
+            }
+        }
+    }
+
 }
 
 /**
@@ -335,6 +401,8 @@ void shop(Party &party, Store &store){
         }
     }
     
+}
+
 /**
  * Called when the player chooses to rest
  * adjust time and party stats accordingly
@@ -342,7 +410,45 @@ void shop(Party &party, Store &store){
  * @param time time taken as input (reference) 
  */
 void rest(Party &party,Time &time){
+    int days = randomNumberGenerator(1,3);//generates a random number between 1 and 3
+    std::cout << "YOU REST FOR " << days << " DAYS" << std::endl;//displays how many days you reat for
 
+    for(int i = 0; i < days; i++){//loop through that number of days to adjust stats
+
+        party.setFood(party.getFood() - 3);//food subtracted for player each day
+
+        for(int j = 0; j < 4; j++){
+            if(party.getPartyLifeAt(j) == true){
+                party.setFood(party.getFood() - 3);//food subtracted for each party member each day
+            }
+        }
+
+        time.addDays(1);//incraments the days
+    }
+}
+
+/**
+ * called when the player chooses to continue
+ * adjusts time and party stats accordingly
+ * @param party party taken as input
+ * @param time time taken as input
+ * @param milestones milestones taken as input
+ */
+void continueOn(Party &party, Time &time,Milestones &milestones){
+    int distance = randomNumberGenerator(70,71); //generates a random number between 70 and 140 (distance traveled)
+    int foodUsed = 0;
+
+    for(int i = 0; i < 14; i++){
+        foodUsed += 3; //food eaten by player
+
+        for(int j = 0; j < 4; j++){
+            if(party.getPartyLifeAt(j) == true){
+                foodUsed += 3;//food eaten by each party member
+            }
+        }
+    }
+    
+    milestones.setMilesTraveled(milestones.getMilesTraveled() + distance);//adds the distance to the total miles traveled
 }
 /**
  * called whenever a misfortune might happen
