@@ -358,6 +358,7 @@ void shop(Party &party, Store &store){
     int choice = 0;
 
     while (true){
+        
         std::cout << "============================================" << std::endl;
         std::cout << "               General Store                " << std::endl;
         std::cout << "============================================" << std::endl;
@@ -365,6 +366,7 @@ void shop(Party &party, Store &store){
         std::cout << "2. Food                           $" << foodBill << std::endl;
         std::cout << "3. Bullets                        $" << bulletsBill << std::endl;
         std::cout << "4. Miscellaneous Supplies         $" << miscSuppliesBill << std::endl;
+        std::cout << "5. Exit and purchase" << std::endl;
         std::cout << "============================================" << std::endl;
         std::cout << "                      Total bill: $" << totalBill << std::endl;
         std::cout << std::endl;
@@ -374,20 +376,120 @@ void shop(Party &party, Store &store){
         std::cin >> choice;
 
         if (choice == 1){
+            
+            while (true){
 
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "There are 2 oxen in a yoke;" << std::endl;
+                std::cout << "Each yoke costs $" << store.getOxenYokePrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many yoke do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getOxenYokePrice() + totalBill) <= party.getMoney()){
 
+                    oxenBill = num * store.getOxenYokePrice();
+                    party.setOxen(party.getOxen() + (num * 2));
+                    
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }  
+            }
         }
+
         else if (choice == 2){
+            
+            while(true){
 
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each pound of food costs $" << store.getFoodPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many pounds of food do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getFoodPrice() + totalBill) <= party.getMoney()){
 
+                    foodBill = num * store.getFoodPrice();
+                    party.setFood(party.getFood() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
         }
+
         else if (choice == 3){
 
+            while (true){
 
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "There are 20 bullets in a box;" << std::endl;
+                std::cout << "Each box costs $" << store.getBulletsBoxPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many boxes do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getBulletsBoxPrice() + totalBill) <= party.getMoney()){
+
+                    bulletsBill = num * store.getBulletsBoxPrice();
+                    party.setBullets(party.getBullets() + (num * 20));
+                    
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }  
+            }
         }
+
         else if (choice == 4){
+            
+            while (true){
 
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon wheel costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon wheels do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
 
+                    miscSuppliesBill = num * store.getWagonPartsPrice();
+                    party.setWheels(party.getWheels() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            } 
+
+            while (true)
+                
         }
         else if (choice == 5){
 
@@ -400,8 +502,9 @@ void shop(Party &party, Store &store){
             std::cout << "Invalid input" << std::endl;
             continue;
         }
-    }
-    
+
+        totalBill = oxenBill + foodBill + bulletsBill + miscSuppliesBill;
+    }  
 }
 
 /**

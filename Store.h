@@ -25,9 +25,9 @@ class Store{
 
         int storeNum;
         double foodPrice;
-        int oxenYokePrice;
-        int bulletsBoxPrice;
-        int wagonPartsPrice;
-        int medKitPrice;
+        double oxenYokePrice;
+        double bulletsBoxPrice;
+        double wagonPartsPrice;
+        double medKitPrice;
 };
 #endif
