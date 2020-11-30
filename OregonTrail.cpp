@@ -529,6 +529,7 @@ void rest(Party &party,Time &time){
 
         time.addDays(1);//incraments the days
     }
+
 }
 
 /**
@@ -963,6 +964,34 @@ int main(){
 
     //begin turn loop
 
+    
+    while(true){
+        std::cout << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
+        std::cout << "You have traveled " << milestones.getMilesTraveled() << " miles." << std::endl;
+        std::cout << "Next milestone is: " <<  milestones.getNextMilestoneName() << std::endl;
+        std::cout << "It is " << milestones.getNextMilestoneDist() << " miles away." << std::endl;
+        std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. hunt; 4. quit" << std::endl;
+        while(true){
+            int choice; 
+            std::cin >> choice;
+            if(choice == 1){
+                rest(party,time);
+                break;
+            }
+            else if(choice == 2){
+                continueOn(party,time,milestones);
+                break;
+            }
+            else if(choice == 3){
+                hunt(party,time);
+                break;
+            }
+            else if(choice == 4){
+                break;
+            }
+        }
+        
+    }
 
 
     
