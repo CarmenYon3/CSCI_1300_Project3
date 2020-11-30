@@ -85,6 +85,20 @@ void Time::addDays(int days){
     }
 }
 
+int Time::getdaysInMonth(int index){
+    return daysInMonth[index];
+}
+
+void Time::setDay(int day){
+    this->day = day;
+}
+void Time::setMonth(int month){
+    this->month = month;
+}
+void Time::setYear(int year){
+    this->year = year;
+}
+
 /* tester for add days */
 // int main(){
 //     Time test  = Time(29,11,1894);

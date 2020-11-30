@@ -745,6 +745,123 @@ void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &nam
  * @return the number generated 
 */
 
+void setStartDate(Time &time_){
+        time_.setDay(1);
+        time_.setMonth(3);
+        time_.setYear(1847);
+        while(true){
+        std::cout << "Your departure date currently is: " << time_.getYear() << "-" << time_.getMonth() << "-" << time_.getDay() << ". Would you like to change it?" << std::endl;
+        std::cout << "Y / N" << std::endl;
+
+        char choice;
+        std::cin >> choice;
+
+        if(choice == 'N' || choice == 'n'){//default date
+            break;
+        }
+        else if(choice == 'Y' || choice == 'y'){
+            std::cout << "Enter a date between 03/01/1847 and 05/01/1847" << std::endl;
+            while(true){
+
+                std::cout << "month: ";
+                int monthIn;
+                std::cin >> monthIn;
+
+
+                if(monthIn > 5 || monthIn < 3){
+                    std::cout << "Invalid input, try again" << std::endl;
+                    continue;
+                }
+                else{
+                    time_.setMonth(monthIn);
+                    std::cout << "day: ";
+                    int dayIn;
+                    std::cin >> dayIn;
+                    if(dayIn < 0 || dayIn > time_.getdaysInMonth(monthIn-1)){
+                        std::cout << "Invalid input, try again" << std::endl;
+                        continue;
+                    }
+                    else{
+                        if(monthIn == 5){
+                            std::cout << "The only day within may is the 1st setting accordingly" << std::endl;
+                            time_.setDay(1);
+                            time_.setYear(1847);
+                            break;
+                        }
+                        time_.setDay(dayIn);
+                        time_.setYear(1847);
+                        break;
+                    }
+                }
+            }
+        }
+        else{
+            std::cout << "Invalid input, try again" << std::endl;
+            continue;
+        }
+
+
+    }
+}
+
 int main(){
+    //enter name
+    std::cout << "What is your name?:" << std::endl;
+    std::string playerName;
+    std::cin >> playerName;
+
+
+    //enter party members name
+    std::cout << "Enter the names of your companions" << std::endl;
+    std::string partyMemberNames[4];
+    std::cout << "1.";
+    std::cin >> partyMemberNames[0];
+    std::cout << "2.";
+    std::cin >> partyMemberNames[1];
+    std::cout << "3.";
+    std::cin >> partyMemberNames[2];
+    std::cout << "4.";
+    std::cin >> partyMemberNames[3];
+
+
+    //construct party object
+    Party party = Party(playerName,partyMemberNames);
+
+    std::cout << "You are starting at mile: 0." << std::endl;
+    //first store
+    std::cout << "There are 2040 that you must travel to reach your destination." << std::endl;
+    std::cout << "Before the start of your trip, you can visit the store and buy supplies: " << std::endl;
+    std::cout << "food, oxen, bullets and wagon parts. Would you like to visit the store? Y / N " << std::endl;
+
+    while(true){
+        char choice;
+        std::cin >> choice;
+        if(choice == 'y' || choice == 'Y'){
+            break;
+        }
+        else if(choice == 'n' || choice == 'N'){
+            break;
+        }
+        else{
+            std::cout << "Invalid input, try again" << std::endl;
+            continue;
+        }
+    }
+
+
+    //ask for start date
+    Milestones milestones = Milestones();
+    milestones.readMileStones("milestones.txt");
+    
+
+    Time time = Time();
+
+    setStartDate(time);
+
+    //begin turn loop
+
+
+
+    
 
 }
