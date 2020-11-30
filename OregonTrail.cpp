@@ -488,12 +488,86 @@ void shop(Party &party, Store &store){
                 }
             } 
 
-            while (true){}
+            while (true){
+
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon axle costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon axles do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setAxles(party.getAxles() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+
+            while (true){
+
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon tongue costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon tongues do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setTongues(party.getTongues() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+
+            while (true){
+
+                std::cout << "============================================" << std::endl;
+                std::cout << "               General Store                " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each medical aid kit costs $" << store.getMedKitPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many medical aid kits do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getMedKitPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setMedKits(party.getMedKits() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
                 
         }
         else if (choice == 5){
 
             std::cout << "Total bill: $" << totalBill << std::endl;
+            std::cout << "Thank you for shopping! Good luck!" << std::endl;
             party.setMoney(party.getMoney() - totalBill);
             break;
         }
@@ -543,7 +617,43 @@ void continueOn(Party &party, Time &time,Milestones &milestones){
     int distance = randomNumberGenerator(70,71); //generates a random number between 70 and 140 (distance traveled)
     int foodUsed = 0;
 
-    for(int i = 0; i < 14; i++){
+    if(distance > milestones.getNextMilestoneDist()){
+        std::cout << "YOU WERE PREPARED TO TRAVEL " << distance << " MILES" << std::endl;
+        std::cout <<  "BUT YOU ARRIVED AT THE KANSAS RIVER CROSSING. WHAT DO YOU WANT TO DO:" << std::endl;
+        std::cout << "(1) REST, (2) CONTINUE" << std::endl;
+
+        for(int i = 0; i < 14; i++){
+            foodUsed += 3; //food eaten by player
+
+            for(int j = 0; j < 4; j++){
+                if(party.getPartyLifeAt(j) == true){
+                    foodUsed += 3;//food eaten by each party member
+                }
+            }
+        }
+    
+    
+        milestones.setMilesTraveled(milestones.getMilesTraveled() + milestones.getNextMilestoneDist());//adds the distance to the total miles traveled
+        party.setFood(party.getFood() - foodUsed);
+
+        while(true){
+            int choice;
+            std::cin >> choice;
+            if(choice == 1){
+                rest(party,time);
+                break;
+            }
+            else if(choice == 2){
+                continueOn(party,time,milestones);
+                break;
+            }
+            else{
+                std::cout << "Invalid input, try again" << std::endl;
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < 14; i++){
         foodUsed += 3; //food eaten by player
 
         for(int j = 0; j < 4; j++){
@@ -551,9 +661,12 @@ void continueOn(Party &party, Time &time,Milestones &milestones){
                 foodUsed += 3;//food eaten by each party member
             }
         }
-    }
+        }
     
-    milestones.setMilesTraveled(milestones.getMilesTraveled() + distance);//adds the distance to the total miles traveled
+    
+        milestones.setMilesTraveled(milestones.getMilesTraveled() + distance);//adds the distance to the total miles traveled
+        party.setFood(party.getFood() - foodUsed);
+    }
 }
 /**
  * called whenever a misfortune might happen
