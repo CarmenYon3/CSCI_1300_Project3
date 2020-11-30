@@ -202,3 +202,6 @@ void Party::setPartyLifeAt(int index, bool value){
     partyLife[index] = value;
 }
 
+std::string Party::getPartyMembersAt(int index){
+    return partyMembers[index];
+}

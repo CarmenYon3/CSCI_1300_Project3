@@ -8,6 +8,7 @@
 #include "Milestones.h"
 #include <vector>
 #include <cstdlib>
+#include <cmath>
 
 
 
@@ -175,7 +176,7 @@ void hunt(Party &party, Time &time){
         }
     }
 
-    if(randomNumberGenerator(0,100) <= 14){    
+    if(randomNumberGenerator(1,100) <= 15){    
         while(true){
             std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A DEER! DO YOU WANT TO HUNT: " << std::endl;
             std::cout << "(1) YES, (2) NO" << std::endl;
@@ -212,7 +213,7 @@ void hunt(Party &party, Time &time){
         }
     }
 
-    if(randomNumberGenerator(0,100) <= 6){    
+    if(randomNumberGenerator(1,100) <= 7){    
         while(true){
             std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A BEAR! DO YOU WANT TO HUNT: " << std::endl;
             std::cout << "(1) YES, (2) NO" << std::endl;
@@ -249,7 +250,7 @@ void hunt(Party &party, Time &time){
         }
     }
 
-    if(randomNumberGenerator(0,100) <= 5){    
+    if(randomNumberGenerator(1,100) <= 5){    
         while(true){
             std::cout << "YOU GOT LUCKY! YOU ENCOUNTERED A MOOSE! DO YOU WANT TO HUNT: " << std::endl;
             std::cout << "(1) YES, (2) NO" << std::endl;
@@ -455,9 +456,232 @@ void continueOn(Party &party, Time &time,Milestones &milestones){
  * adjusts party and time stats according to the misfortune that has occoured
  * @param party party taken as input (reference)
  * @param time store taken as input (reference)
+ * @return true if the game can continue, false if otherwise
  */
-void misfortune(Party &party, Time &time){
+bool misfortune(Party &party, Time &time){
+    if(randomNumberGenerator(1,100) <= 40){//misfortune occours
 
+        int choice = randomNumberGenerator(1,3);//possibilities for misfortunes
+        int diseaseNum = randomNumberGenerator(1,5); //possibilities for diseases
+        std::string disease = "";
+        switch(diseaseNum){
+            case 1:
+                disease = "CHOLERA";
+                break;
+            case 2:
+                disease = "DYSENTARY";
+                break;
+            case 3:
+                disease = "TYPHIOD";
+                break;
+            case 4: 
+                disease = "MEASLES";
+                break;
+            case 5:
+                disease = "FEVER";
+                break;
+            default:
+                disease = "DOO DOO";
+                break;
+        }
+
+        if(choice == 3){//disease
+            int patient = randomNumberGenerator(0,5);//random number between 0 and 4
+            if(patient == 4){//you catch some disease
+                std::cout << "YOU HAVE CAUGHT " << disease << std::endl;
+                    if(party.getMedKits() > 0){
+                        std::cout << "YOU USE A MEDKIT" << std::endl;
+                        if(randomNumberGenerator(0,2) == 0){//50% change
+                            std::cout << "YOU DIE OF " << disease << std::endl;
+                            return false;
+                        }
+                        else{
+                            std::cout << "YOU SURVIVE" << std::endl;
+                            return true;
+                        }
+                    }
+                    else{
+                        while(true){
+                            std::cout << "YOU CAN EITHER:" << std::endl;
+                            std::cout << "(1) REST" << std::endl;
+                            std::cout << "(2) PUSH ON" << std::endl;
+
+                            int in;
+                            std::cin >> in;
+
+                            if(in == 1){
+
+                                for(int i = 0; i < 3; i++){//loop through that number of days to adjust stats
+
+                                    party.setFood(party.getFood() - 3);//food subtracted for player each day
+
+                                    for(int j = 0; j < 4; j++){
+                                        if(party.getPartyLifeAt(j) == true){
+                                            party.setFood(party.getFood() - 3);//food subtracted for each party member each day
+                                        }
+                                    }
+
+                                    time.addDays(1);//incraments the days
+                                }
+
+                                if(randomNumberGenerator(1,10) <= 3){//30%change
+                                    std::cout << "YOU DIE OF " << disease << std::endl;
+                                    return false;
+                                }
+                                else{
+                                    std::cout << "YOU SURVIVE" << std::endl;
+                                    return true;
+                                }
+                                
+                            }
+                            else if(in == 2){
+                                if(randomNumberGenerator(1,10) <= 7){//70%change
+                                    std::cout << "YOU DIE OF " << disease << std::endl;
+                                    return false;
+                                }
+                                else{
+                                    std::cout << "YOU SURVIVE" << std::endl;
+                                    return true;
+                                }
+                            }
+                            else{
+                                std::cout << "Invalid input, try again" << std::endl;
+                            }
+                        }
+
+                    }
+            }
+            else{//a party member catches some disease
+                std::cout << party.getPartyMembersAt(choice) << " HAS CAUGHT " << disease << std::endl;      
+
+                if(party.getMedKits() > 0){
+                        std::cout << "YOU USE A MEDKIT" << std::endl;
+                        if(randomNumberGenerator(0,2) == 0){//50% change
+                            std::cout << party.getPartyMembersAt(choice) << "DIES OF " << disease << std::endl;
+                            party.setPartyLifeAt(choice,false);
+                            return true;
+                        }
+                        else{
+                            std::cout << party.getPartyMembersAt(choice) << " SURVIVES" << std::endl;
+                            return true;
+                        }
+                    }
+                    else{
+                        while(true){
+                            std::cout << "YOU CAN EITHER:" << std::endl;
+                            std::cout << "(1) REST" << std::endl;
+                            std::cout << "(2) PUSH ON" << std::endl;
+
+                            int in;
+                            std::cin >> in;
+
+                            if(in == 1){
+
+                                for(int i = 0; i < 3; i++){//loop through that number of days to adjust stats
+
+                                    party.setFood(party.getFood() - 3);//food subtracted for player each day
+
+                                    for(int j = 0; j < 4; j++){
+                                        if(party.getPartyLifeAt(j) == true){
+                                            party.setFood(party.getFood() - 3);//food subtracted for each party member each day
+                                        }
+                                    }
+
+                                    time.addDays(1);//incraments the days
+                                }
+
+                                if(randomNumberGenerator(1,10) <= 3){//30%change
+                                    std::cout << party.getPartyMembersAt(choice) << "DIES OF " << disease << std::endl;
+                                    party.setPartyLifeAt(choice,false);
+                                    return true;
+                                }
+                                else{
+                                    std::cout << party.getPartyMembersAt(choice) << "SURVIVES" << std::endl;
+                                    return true;
+                                }
+                                
+                            }
+                            else if(in == 2){
+                                if(randomNumberGenerator(1,10) <= 7){//70%change
+                                    std::cout << party.getPartyMembersAt(choice) << "DIES OF " << disease << std::endl;
+                                    party.setPartyLifeAt(choice,false);
+                                    return true;
+                                }
+                                else{
+                                    std::cout << party.getPartyMembersAt(choice) << "SURVIVES" << std::endl;
+                                    return true;
+                                }
+                            }
+                            else{
+                                std::cout << "Invalid input, try again" << std::endl;
+                            }
+                        }
+
+                    }
+
+            }
+        }
+        else if(choice == 2){//oxen dies
+            if(party.getOxen() > 1){//there are some oxen left
+                party.setOxen(party.getOxen() - 1);
+                std::cout << "OH NO! ONE OF THE OXEN HAS DIED! YOU HAVE " << party.getOxen() << " OXEN LEFT" << std::endl;
+                return true;
+            }
+            else{//if there arent any oxen left
+                std::cout << "OH NO! ONE OF THE OXEN HAS DIED! YOU HAVE " << party.getOxen() << " OXEN LEFT" << std::endl;
+                return false;
+            }
+        }
+        else if(choice == 1){// Wheel/Axle/Tongue breaks
+            int partNum = randomNumberGenerator(1,3);
+            if(partNum == 1){
+                std::cout << "OH NO! ONE OF YOUR WHEELS IS BROKEN!" << std::endl;
+                if(party.getWheels() > 0){
+                    std::cout << "YOU USE A SPARE WHEEL" << std::endl;
+                    party.setWheels(party.getWheels() - 1);
+                    return true;
+                }
+                else{
+                    std::cout << "YOU HAVE NO SPARE PARTS" << std::endl;
+                    return false;
+                }
+
+            }
+            else if(partNum == 2){
+                std::cout << "OH NO! ONE OF YOUR AXLES IS BROKEN!" << std::endl;
+                if(party.getAxles() > 0){
+                    std::cout << "YOU USE A SPARE AXLE" << std::endl;
+                    party.setAxles(party.getAxles() - 1);
+                    return true;
+                }
+                else{
+                    std::cout << "YOU HAVE NO SPARE PARTS" << std::endl;
+                    return false;
+                }
+            }
+            else if(partNum == 3){
+                std::cout << "OH NO! ONE OF YOUR TONGUES IS BROKEN!" << std::endl;
+                if(party.getTongues() > 0){
+                    std::cout << "YOU USE A SPARE TONGUE" << std::endl;
+                    party.setTongues(party.getTongues() - 1);
+                    return true;
+                }
+                else{
+                    std::cout << "YOU HAVE NO SPARE PARTS" << std::endl;
+                    return false;
+                }
+            }
+            else{
+                std::cout << "UH UH, something went wrong, check RNG" << std::endl;
+
+            }
+            
+        }
+        else{
+            std::cout << "UH OH, SOMETHING WENT WRONG, check RNG" << std::endl;
+        }
+    }
+    return true;
 }
 
 /**

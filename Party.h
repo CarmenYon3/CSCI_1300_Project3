@@ -35,6 +35,7 @@ class Party{
         bool getPartyLifeAt(int index);
         void setPartyLifeAt(int index, bool value);
 
+        std::string getPartyMembersAt(int index);
         
     private:
         int oxen;
