@@ -11,6 +11,8 @@ class Store{
 
         int getStoreNum();
 
+        void setStoreNum(int index);
+
         double getFoodPrice();
         
         int getOxenYokePrice();

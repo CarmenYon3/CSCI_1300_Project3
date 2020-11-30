@@ -613,15 +613,82 @@ void rest(Party &party,Time &time){
  * @param time time taken as input
  * @param milestones milestones taken as input
  */
-void continueOn(Party &party, Time &time,Milestones &milestones){
+void continueOn(Party &party, Time &time,Milestones &milestones,Store &store){
+    time.addDays(14);
     int distance = randomNumberGenerator(70,71); //generates a random number between 70 and 140 (distance traveled)
     int foodUsed = 0;
 
     if(distance > milestones.getNextMilestoneDist()){
-        std::cout << "YOU WERE PREPARED TO TRAVEL " << distance << " MILES" << std::endl;
-        std::cout <<  "BUT YOU ARRIVED AT THE KANSAS RIVER CROSSING. WHAT DO YOU WANT TO DO:" << std::endl;
-        std::cout << "(1) REST, (2) CONTINUE" << std::endl;
+        std::string milestoneArrivedAt = milestones.getNextMilestoneName();        
+        for(int i = 0; i < 14; i++){
+                foodUsed += 3; //food eaten by player
 
+                for(int j = 0; j < 4; j++){
+                    if(party.getPartyLifeAt(j) == true){
+                        foodUsed += 3;//food eaten by each party member
+                    }
+                }
+            }
+        
+            
+            milestones.setMilesTraveled(milestones.getMilesTraveled() + milestones.getNextMilestoneDist());//adds the distance to the total miles traveled
+            party.setFood(party.getFood() - foodUsed);
+
+        if(milestoneArrivedAt.find("Fort") != std::string::npos){//if the milestone is a fort
+            std::cout << "YOU WERE PREPARED TO TRAVEL " << distance << " MILES" << std::endl;
+            std::cout <<  "BUT YOU ARRIVED AT " << std::endl;
+            std::cout << milestoneArrivedAt << std::endl; 
+            std::cout << ". WHAT DO YOU WANT TO DO:" << std::endl;
+                     
+
+            while(true){
+                std::cout << "(1) REST, (2) CONTINUE, (3) SHOP" << std::endl;
+
+                int choice;
+                std::cin >> choice;
+                if(choice == 1){
+                    rest(party,time);
+                    ;
+                }
+                else if(choice == 2){
+                    store.setStoreNum(store.getStoreNum() + 1);
+                    break;
+                }
+                else if(choice == 3){
+                    shop(party,store);
+                    break;
+                }
+                else{
+                    std::cout << "Invalid input, try again" << std::endl;
+                    continue;
+                }
+            }
+
+        }
+        else{
+            std::cout << "YOU WERE PREPARED TO TRAVEL " << distance << " MILES" << std::endl;
+            std::cout <<  "BUT YOU ARRIVED AT " << std::endl;
+            std::cout << milestoneArrivedAt << std::endl; 
+            std::cout << "WHAT DO YOU WANT TO DO:" << std::endl;
+
+            while(true){
+                std::cout << "(1) REST, (2) CONTINUE" << std::endl;
+                int choice;
+                std::cin >> choice;
+                if(choice == 1){
+                    rest(party,time);
+                    continue;
+                }
+                else if(choice == 2){
+                    break;
+                }
+                else{
+                    std::cout << "Invalid input, try again" << std::endl;
+                }
+            }
+        }
+    }
+    else{
         for(int i = 0; i < 14; i++){
             foodUsed += 3; //food eaten by player
 
@@ -630,37 +697,6 @@ void continueOn(Party &party, Time &time,Milestones &milestones){
                     foodUsed += 3;//food eaten by each party member
                 }
             }
-        }
-    
-    
-        milestones.setMilesTraveled(milestones.getMilesTraveled() + milestones.getNextMilestoneDist());//adds the distance to the total miles traveled
-        party.setFood(party.getFood() - foodUsed);
-
-        while(true){
-            int choice;
-            std::cin >> choice;
-            if(choice == 1){
-                rest(party,time);
-                break;
-            }
-            else if(choice == 2){
-                continueOn(party,time,milestones);
-                break;
-            }
-            else{
-                std::cout << "Invalid input, try again" << std::endl;
-            }
-        }
-    }
-    else{
-        for(int i = 0; i < 14; i++){
-        foodUsed += 3; //food eaten by player
-
-        for(int j = 0; j < 4; j++){
-            if(party.getPartyLifeAt(j) == true){
-                foodUsed += 3;//food eaten by each party member
-            }
-        }
         }
     
     
@@ -1043,6 +1079,8 @@ int main(){
 
     //construct party object
     Party party = Party(playerName,partyMemberNames);
+    party.setMoney(1600);
+
 
     std::cout << "You are starting at mile: 0." << std::endl;
     //first store
@@ -1077,14 +1115,33 @@ int main(){
 
     //begin turn loop
 
+    Store store = Store();
     
     while(true){
         std::cout << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
         std::cout << "You have traveled " << milestones.getMilesTraveled() << " miles." << std::endl;
         std::cout << "Next milestone is: " <<  milestones.getNextMilestoneName() << std::endl;
         std::cout << "It is " << milestones.getNextMilestoneDist() << " miles away." << std::endl;
-        std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. hunt; 4. quit" << std::endl;
+        std::cout << "Food: " << party.getFood() << std::endl;
+        std::cout << "Money: " << party.getMoney() << std::endl;
+        std::cout << "Oxen: " << party.getOxen() << std::endl;
+        std::cout << "Bullets: " << party.getBullets() << std::endl;
+        std::cout << "Wagon Parts: " << party.getAxles() + party.getTongues() + party.getWheels() << std::endl;
+        std::cout << "Medkits: " << party.getMedKits() << std::endl;
+        std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. Hunt; 4. Quit" << std::endl;
+
         while(true){
+            if(party.getOxen() == 0){
+                std::cout << "You ran out of oxen. Game Over" << std::endl;
+                writeResults(party,time,milestones);
+                return 0;
+            }
+            if(party.getFood() == 0){
+                std::cout << "You ran out of food. Game Over" << std::endl;
+                writeResults(party,time,milestones);
+                return 0;
+            }
+
             int choice; 
             std::cin >> choice;
             if(choice == 1){
@@ -1092,7 +1149,7 @@ int main(){
                 break;
             }
             else if(choice == 2){
-                continueOn(party,time,milestones);
+                continueOn(party,time,milestones,store);
                 break;
             }
             else if(choice == 3){
@@ -1102,9 +1159,21 @@ int main(){
             else if(choice == 4){
                 break;
             }
+
         }
-        
+
+        if(misfortune(party,time) == false){
+            std::cout << "Game Over" << std::endl;
+            writeResults(party,time,milestones);
+            return 0;
+        }
+        if(milestones.getMilesTraveled() >= 2040){
+            std::cout << "You arrived at Oregon City. Congradulations, you win!" << std::endl;
+            writeResults(party,time,milestones);
+            return 0;
+        }
     }
+
 
 
     

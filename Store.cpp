@@ -93,4 +93,7 @@ int Store::getMedKitPrice(){
 }
 
 
+void Store::setStoreNum(int index){
+    storeNum = index;
+}
 
