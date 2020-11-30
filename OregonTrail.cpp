@@ -488,7 +488,7 @@ void shop(Party &party, Store &store){
                 }
             } 
 
-            while (true)
+            while (true){}
                 
         }
         else if (choice == 5){
