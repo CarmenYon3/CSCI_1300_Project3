@@ -37,7 +37,7 @@ void raiderAttack(Party &party,Milestones & milestones){
 
     if(randomNumberGenerator(1,100) <= probability){//raider attack happens
         while(true){
-            std::cout << "RIDERS AHEAD! THEY LOOK HOSTILE!" << std::endl;
+            std::cout << "RAIDERS AHEAD! THEY LOOK HOSTILE!" << std::endl;
             std::cout << "(1) RUN" << std::endl;
             std::cout << "(2) ATTACK" << std::endl;
             std::cout << "(3) SURRENDER" << std::endl;
