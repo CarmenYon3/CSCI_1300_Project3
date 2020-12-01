@@ -13,9 +13,14 @@
 #include <cmath>
 
 
-
+//put up here so its accessable
 bool puzzle();
-
+/**
+ * Takes a minimum and maximum value and returns a random number within that range
+ * @param rand_min minimum value of random number
+ * @param rand_max maximum value of random number
+ * @return the number generated 
+*/
 int randomNumberGenerator (int rand_min, int rand_max){
     int rng = rand() % rand_max + rand_min;
     return rng;
@@ -994,6 +999,7 @@ void continueOn(Party &party, Time &time,Milestones &milestones,Store &store){
         party.setFood(party.getFood() - foodUsed);
     }
 }
+
 /**
  * called whenever a misfortune might happen
  * adjusts party and time stats according to the misfortune that has occoured
@@ -1034,6 +1040,9 @@ bool misfortune(Party &party, Time &time){
                 std::cout << "YOU HAVE CAUGHT " << disease << std::endl;
                     if(party.getMedKits() > 0){
                         std::cout << "YOU USE A MEDKIT" << std::endl;
+
+                        party.setMedKits(party.getMedKits() - 1);
+
                         if(randomNumberGenerator(0,2) == 0){//50% change
                             std::cout << "YOU DIE OF " << disease << std::endl;
                             return false;
@@ -1098,7 +1107,10 @@ bool misfortune(Party &party, Time &time){
                 std::cout << party.getPartyMembersAt(choice) << " HAS CAUGHT " << disease << std::endl;      
 
                 if(party.getMedKits() > 0){
+                    
                         std::cout << "YOU USE A MEDKIT" << std::endl;
+                        party.setMedKits(party.getMedKits() - 1);
+
                         if(randomNumberGenerator(0,2) == 0){//50% change
                             std::cout << party.getPartyMembersAt(choice) << " DIES OF " << disease << std::endl;
                             party.setPartyLifeAt(choice,false);
@@ -1313,14 +1325,11 @@ void writeResults(Party &party, Time &time, Milestones &milestones){
 
 }
 
-
 /**
- * Takes a minimum and maximum value and returns a random number within that range
- * @param rand_min minimum value of random number
- * @param rand_max maximum value of random number
- * @return the number generated 
-*/
-
+ * Allows the player to set the initial date, or keep the normal initial date
+ * modifies time accordingly
+ * @param time time taken as input
+ */
 void setStartDate(Time &time_){
         time_.setDay(1);
         time_.setMonth(3);
@@ -1442,6 +1451,7 @@ int main(){
     //begin turn loop
     
     while(true){
+        //display stats
         std::cout <<"\n" << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
         std::cout << "You have traveled " << milestones.getMilesTraveled() << " miles." << std::endl;
         std::cout << "Next milestone is: " <<  milestones.getNextMilestoneName() << std::endl;
@@ -1454,6 +1464,7 @@ int main(){
         std::cout << "Medkits: " << party.getMedKits() << std::endl;
         std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. Hunt; 4. Quit \n" << std::endl;
 
+        //checks for game over cases
         while(true){
             if(party.getOxen() <= 0){
                 std::cout << "You ran out of oxen. Game Over" << std::endl;
@@ -1465,7 +1476,8 @@ int main(){
                 writeResults(party,time,milestones);
                 return 0;
             }
-
+            
+            //player makes choice
             int choice; 
             std::cin >> choice;
             if(choice == 1){
@@ -1485,6 +1497,8 @@ int main(){
             }
 
         }
+        //misfortune and raider attacks
+        raiderAttack(party,milestones);
         std::cout << "\n";
         if(misfortune(party,time) == false){
             std::cout << "Game Over" << std::endl;
@@ -1498,9 +1512,4 @@ int main(){
             return 0;
         }
     }
-
-
-
-    
-
 }
