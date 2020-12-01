@@ -374,7 +374,7 @@ void shop(Party &party, Store &store){
         std::cout << "============================================" << std::endl;
         std::cout << "                      Total bill: $" << totalBill << std::endl;
         std::cout << std::endl;
-        std::cout << "Amount you have: " << party.getMoney() << std::endl;
+        std::cout << "Amount you have: $" << party.getMoney() << std::endl;
         std::cout << std::endl;
         std::cout << "Which item would you like to buy?" << std::endl;
         std::cin >> choice;
@@ -646,7 +646,7 @@ void initialShop(Party &party, Store &store){
         std::cout << "============================================" << std::endl;
         std::cout << "                      Total bill: $" << totalBill << std::endl;
         std::cout << std::endl;
-        std::cout << "Amount you have: " << party.getMoney() << std::endl;
+        std::cout << "Amount you have: $" << party.getMoney() << std::endl;
         std::cout << std::endl;
         std::cout << "Which item would you like to buy?" << std::endl;
         std::cin >> choice;
@@ -694,7 +694,7 @@ void initialShop(Party &party, Store &store){
                 std::cout << "============================================" << std::endl;
                 std::cout << "       Independence, MO General Store       " << std::endl;
                 std::cout << "============================================" << std::endl;
-                std::cout << "It is recommended that you purchase at lease 200 lbs. of food before departing." << std::endl;
+                std::cout << "It is recommended that you purchase at least 200 lbs. of food before departing." << std::endl;
                 std::cout << "Each pound of food costs $" << store.getFoodPrice() << std::endl;
                 std::cout << std::endl;
                 std::cout << "How many pounds of food do you want to purchase?" << std::endl;
