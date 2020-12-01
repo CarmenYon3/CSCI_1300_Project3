@@ -1021,7 +1021,7 @@ bool misfortune(Party &party, Time &time){
                 disease = "DYSENTARY";
                 break;
             case 3:
-                disease = "TYPHIOD";
+                disease = "TYPHOID";
                 break;
             case 4: 
                 disease = "MEASLES";
@@ -1250,12 +1250,12 @@ bool puzzle(){
         std::cin >> temp;
         int temp1 = randomNumberGenerator(1,10);
         if(temp == temp1){
-            std::cout << "num was " << temp1 << std::endl;
+            std::cout << "The number was: " << temp1 << std::endl;
             return true;
         }
         else{
-            std::cout << "try again stinky" << std::endl;
-            std::cout << "num was " << temp1 << std::endl;
+            std::cout << "Try again stinky" << std::endl;
+            std::cout << "The number was: " << temp1 << std::endl;
         }
     }
     return false;
