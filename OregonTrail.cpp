@@ -938,7 +938,7 @@ void continueOn(Party &party, Time &time,Milestones &milestones,Store &store){
                 std::cin >> choice;
                 if(choice == 1){
                     rest(party,time);
-                    ;
+                    
                 }
                 else if(choice == 2){
                     store.setStoreNum(store.getStoreNum() + 1);
@@ -1100,7 +1100,7 @@ bool misfortune(Party &party, Time &time){
                 if(party.getMedKits() > 0){
                         std::cout << "YOU USE A MEDKIT" << std::endl;
                         if(randomNumberGenerator(0,2) == 0){//50% change
-                            std::cout << party.getPartyMembersAt(choice) << "DIES OF " << disease << std::endl;
+                            std::cout << party.getPartyMembersAt(choice) << " DIES OF " << disease << std::endl;
                             party.setPartyLifeAt(choice,false);
                             return true;
                         }
@@ -1134,7 +1134,7 @@ bool misfortune(Party &party, Time &time){
                                 }
 
                                 if(randomNumberGenerator(1,10) <= 3){//30%change
-                                    std::cout << party.getPartyMembersAt(choice) << "DIES OF " << disease << std::endl;
+                                    std::cout << party.getPartyMembersAt(choice) << " DIES OF " << disease << std::endl;
                                     party.setPartyLifeAt(choice,false);
                                     return true;
                                 }
@@ -1236,7 +1236,7 @@ bool puzzle(){
         std::cout << "Pick a number between 1 and 10" << std::endl;
         int temp;
         std::cin >> temp;
-        int temp1 = randomNumberGenerator(0,10);
+        int temp1 = randomNumberGenerator(1,10);
         if(temp == temp1){
             std::cout << "num was " << temp1 << std::endl;
             return true;
@@ -1442,7 +1442,7 @@ int main(){
     //begin turn loop
     
     while(true){
-        std::cout << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
+        std::cout <<"\n" << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
         std::cout << "You have traveled " << milestones.getMilesTraveled() << " miles." << std::endl;
         std::cout << "Next milestone is: " <<  milestones.getNextMilestoneName() << std::endl;
         std::cout << "It is " << milestones.getNextMilestoneDist() << " miles away." << std::endl;
@@ -1452,15 +1452,15 @@ int main(){
         std::cout << "Bullets: " << party.getBullets() << std::endl;
         std::cout << "Wagon Parts: " << party.getAxles() + party.getTongues() + party.getWheels() << std::endl;
         std::cout << "Medkits: " << party.getMedKits() << std::endl;
-        std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. Hunt; 4. Quit" << std::endl;
+        std::cout << "What would you like to do?: 1.  Rest; 2. Continue; 3. Hunt; 4. Quit \n" << std::endl;
 
         while(true){
-            if(party.getOxen() == 0){
+            if(party.getOxen() <= 0){
                 std::cout << "You ran out of oxen. Game Over" << std::endl;
                 writeResults(party,time,milestones);
                 return 0;
             }
-            if(party.getFood() == 0){
+            if(party.getFood() <= 0){
                 std::cout << "You ran out of food. Game Over" << std::endl;
                 writeResults(party,time,milestones);
                 return 0;
@@ -1485,12 +1485,13 @@ int main(){
             }
 
         }
-
+        std::cout << "\n";
         if(misfortune(party,time) == false){
             std::cout << "Game Over" << std::endl;
             writeResults(party,time,milestones);
             return 0;
         }
+        std::cout << "\n";
         if(milestones.getMilesTraveled() >= 2040){
             std::cout << "You arrived at Oregon City. Congradulations, you win!" << std::endl;
             writeResults(party,time,milestones);
