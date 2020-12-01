@@ -361,6 +361,8 @@ void shop(Party &party, Store &store){
 
     while (true){
         
+        // Main store menu where the player chooses which items to buy
+        // Loops until player exits
         std::cout << "============================================" << std::endl;
         std::cout << "               General Store                " << std::endl;
         std::cout << "============================================" << std::endl;
@@ -379,8 +381,9 @@ void shop(Party &party, Store &store){
 
         if (choice == 1){
             
-            while (true){
-
+            while (true){  
+                
+                // Menu for buying oxen, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -409,7 +412,8 @@ void shop(Party &party, Store &store){
         else if (choice == 2){
             
             while(true){
-
+                
+                // Menu for buying food, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -438,6 +442,7 @@ void shop(Party &party, Store &store){
 
             while (true){
 
+                // Menu for buying bullets, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -467,6 +472,7 @@ void shop(Party &party, Store &store){
             
             while (true){
 
+                // Menu for buying wagon wheels, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -492,6 +498,7 @@ void shop(Party &party, Store &store){
 
             while (true){
 
+                // Menu for buying wagon axles, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -517,6 +524,7 @@ void shop(Party &party, Store &store){
 
             while (true){
 
+                // Menu for buying wagon tongues, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -542,6 +550,7 @@ void shop(Party &party, Store &store){
 
             while (true){
 
+                // Menu for buying medkits, loops until player can afford the purchase
                 std::cout << "============================================" << std::endl;
                 std::cout << "               General Store                " << std::endl;
                 std::cout << "============================================" << std::endl;
@@ -568,6 +577,285 @@ void shop(Party &party, Store &store){
         }
         else if (choice == 5){
 
+            // Makes purchase final and exits the store
+            std::cout << "Total bill: $" << totalBill << std::endl;
+            std::cout << "Thank you for shopping! Good luck!" << std::endl;
+            party.setMoney(party.getMoney() - totalBill);
+            break;
+        }
+        else{
+
+            // Prints if input number isn't one of the options
+            std::cout << "Invalid input" << std::endl;
+            continue;
+        }
+
+        totalBill = oxenBill + foodBill + bulletsBill + miscSuppliesBill;
+    }  
+}
+
+/**
+ * Called when the player enters the store in Independence 
+ * presents a menu and racks up a bill as the player selects items
+ * upon exiting, the bill is subrtraced from the party stats
+ * @param party party taken as input (reference)
+ * @param store store taken as input (reference)
+ */
+void initialShop(Party &party, Store &store){
+
+    double oxenBill = 0.00;
+    double foodBill = 0.00;
+    double bulletsBill = 0.00;
+    double miscSuppliesBill = 0.00;
+    double totalBill = oxenBill + foodBill + bulletsBill + miscSuppliesBill;
+    int choice = 0;
+
+    // Describes all items in the store and provides advice on what to buy
+    std::cout << "Before you start your journey, you need to stock up on supplies" << std::endl;
+    std::cout << "You have saved $1600 to spend on the following items in the general store: " << std::endl;
+    std::cout << "=========================================================================================" << std::endl;
+    std::cout << "Oxen:" << std::endl;
+    std::cout << "You can spend $100-$200 on your team." << std::endl;
+    std::cout << "The more you spend, the faster you'll go because you'll have the better animals." << std::endl;
+    std::cout << std::endl;
+    std::cout << "Food:" << std::endl;
+    std::cout << "The more you have, the less chance there is of getting sick." << std::endl;
+    std::cout << std::endl;
+    std::cout << "Ammunition:" << std::endl;
+    std::cout << "You will need bullets for attacks by animals and bandits and for hunting food." << std::endl;
+    std::cout << std::endl;
+    std::cout << "Miscellaneous:" << std::endl;
+    std::cout << "This includes medicine and other things you will need for sickness and emergency repairs." << std::endl;
+    std::cout << "=========================================================================================" << std::endl;
+    std::cout << "You can spend all your money before you start your trip. " << std::endl; 
+    std::cout << "Alternatively, you can save some of your cash to spend at forts along the way when you run low on supplies." << std::endl;
+    std::cout << "However, items cost more at the forts." << std::endl;
+    std::cout << "You can also go hunting along the way to get more food." << std::endl;
+
+    while (true){
+        
+        // Menu for Independence store, player selects item to buy
+        std::cout << "============================================" << std::endl;
+        std::cout << "       Independence, MO General Store       " << std::endl;
+        std::cout << "============================================" << std::endl;
+        std::cout << "1. Oxen                           $" << oxenBill << std::endl;
+        std::cout << "2. Food                           $" << foodBill << std::endl;
+        std::cout << "3. Bullets                        $" << bulletsBill << std::endl;
+        std::cout << "4. Miscellaneous Supplies         $" << miscSuppliesBill << std::endl;
+        std::cout << "5. Exit and purchase" << std::endl;
+        std::cout << "============================================" << std::endl;
+        std::cout << "                      Total bill: $" << totalBill << std::endl;
+        std::cout << std::endl;
+        std::cout << "Amount you have: " << party.getMoney() << std::endl;
+        std::cout << std::endl;
+        std::cout << "Which item would you like to buy?" << std::endl;
+        std::cin >> choice;
+
+        if (choice == 1){
+            
+            while (true){
+
+                // Menu for buying oxen, loops until player can afford purchase and chooses correct number of yoke
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "You must buy 3-5 yokes before leaving Independence." << std::endl;
+                std::cout << "There are 2 oxen in a yoke" << std::endl;
+                std::cout << "Each yoke costs $" << store.getOxenYokePrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many yoke do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getOxenYokePrice() + totalBill) <= party.getMoney() && num >= 3 && num <= 5){
+
+                    oxenBill = num * store.getOxenYokePrice();
+                    party.setOxen(party.getOxen() + (num * 2));
+                    
+                    break;
+                }
+                else if((num < 3 || num > 5 && num * store.getOxenYokePrice() + totalBill) <= party.getMoney()){
+
+                    std::cout << "You must buy 3-5 yokes before leaving Independence. Please enter a different number." << std::endl;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }  
+            }
+        }
+
+        else if (choice == 2){
+            
+            while(true){
+
+                // Menu for buying food, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "It is recommended that you purchase at lease 200 lbs. of food before departing." << std::endl;
+                std::cout << "Each pound of food costs $" << store.getFoodPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many pounds of food do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getFoodPrice() + totalBill) <= party.getMoney()){
+
+                    foodBill = num * store.getFoodPrice();
+                    party.setFood(party.getFood() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+        }
+
+        else if (choice == 3){
+
+            while (true){
+
+                // Menu for buying bullets, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "There are 20 bullets in a box;" << std::endl;
+                std::cout << "Each box costs $" << store.getBulletsBoxPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many boxes do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getBulletsBoxPrice() + totalBill) <= party.getMoney()){
+
+                    bulletsBill = num * store.getBulletsBoxPrice();
+                    party.setBullets(party.getBullets() + (num * 20));
+                    
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }  
+            }
+        }
+
+        else if (choice == 4){
+            
+            while (true){
+
+                // Menu for buying wagon wheels, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon wheel costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon wheels do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill = num * store.getWagonPartsPrice();
+                    party.setWheels(party.getWheels() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            } 
+
+            while (true){
+
+                // Menu for buying wagon axles, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon axle costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon axles do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setAxles(party.getAxles() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+
+            while (true){
+
+                // Menu for buying bullets, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each wagon tongue costs $" << store.getWagonPartsPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many wagon tongues do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getWagonPartsPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setTongues(party.getTongues() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+
+            while (true){
+
+                // Menu for buying medkits, loops until player can afford purchase
+                std::cout << "============================================" << std::endl;
+                std::cout << "       Independence, MO General Store       " << std::endl;
+                std::cout << "============================================" << std::endl;
+                std::cout << "Each medical aid kit costs $" << store.getMedKitPrice() << std::endl;
+                std::cout << std::endl;
+                std::cout << "How many medical aid kits do you want to purchase?" << std::endl;
+                int num = 0;
+                std::cin >> num;
+                if ((num * store.getMedKitPrice() + totalBill) <= party.getMoney()){
+
+                    miscSuppliesBill += num * store.getWagonPartsPrice();
+                    party.setMedKits(party.getMedKits() + num);
+                        
+                    break;
+                }
+                else{
+
+                    std::cout << "You do not have enough money for this purchase" << std::endl;
+                    std::cout << "Please enter a different amount" << std::endl;
+                    continue;
+                }
+            }
+                
+        }
+        else if (choice == 5){
+
+            // Exits player from the store and finalizes purchase
             std::cout << "Total bill: $" << totalBill << std::endl;
             std::cout << "Thank you for shopping! Good luck!" << std::endl;
             party.setMoney(party.getMoney() - totalBill);
