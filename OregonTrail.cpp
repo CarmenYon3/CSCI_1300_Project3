@@ -1393,20 +1393,20 @@ int main(){
     //enter name
     std::cout << "What is your name?:" << std::endl;
     std::string playerName;
-    std::cin >> playerName;
+    std::getline(std::cin, playerName);
 
 
     //enter party members name
     std::cout << "Enter the names of your companions" << std::endl;
     std::string partyMemberNames[4];
     std::cout << "1.";
-    std::cin >> partyMemberNames[0];
+    std::getline(std::cin, partyMemberNames[0]);
     std::cout << "2.";
-    std::cin >> partyMemberNames[1];
+    std::getline(std::cin, partyMemberNames[1]);
     std::cout << "3.";
-    std::cin >> partyMemberNames[2];
+    std::getline(std::cin, partyMemberNames[2]);
     std::cout << "4.";
-    std::cin >> partyMemberNames[3];
+    std::getline(std::cin, partyMemberNames[3]);
 
 
     //construct party object
