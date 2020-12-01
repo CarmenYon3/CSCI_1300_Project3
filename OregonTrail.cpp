@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
+#include "fstream"
 #include "Time.h"
 #include "Party.h"
 #include "Store.h"
@@ -958,17 +960,7 @@ bool puzzle(){
     }
     return false;
 }
-/**
- * Writes the score at the end of the game to a high score list
- * pass the file into a vector, sorts vector using bubble sort, rewrites file using new vector
- * file being written to will contain previous runs high scores
- * @param party party taken as input (reference)
- * @param time store taken as input (reference)
- * @param milestones milestones object taken as input (reference)
- */
-void writeResults(Party &party, Time &time, Milestones &milestones){
 
-}
 /**
  * Take two vectors of scores and names as input,
  * Use bubble sort to sort the int vector, and perform the same operations on name to maintain the same pairings
@@ -990,6 +982,49 @@ void bubbleSortHighScore(std::vector<int> &scores, std::vector<std::string> &nam
         }
     }
 }
+/**
+ * Writes the score at the end of the game to a high score list
+ * pass the file into a vector, sorts vector using bubble sort, rewrites file using new vector
+ * file being written to will contain previous runs high scores
+ * @param party party taken as input (reference)
+ * @param time store taken as input (reference)
+ * @param milestones milestones object taken as input (reference)
+ */
+void writeResults(Party &party, Time &time, Milestones &milestones){
+
+    std::ifstream inFile;
+    std::ofstream outFile;
+
+    std::vector<int> scores;
+    std::vector<std::string> names;
+
+    inFile.open("results.txt");
+
+    if(inFile.fail()){
+        std::cout << "something went wrong" << std::endl;
+    }
+    else{
+        std::string line = "";
+        while(std::getline(inFile,line)){
+            names.push_back(line);
+            std::getline(inFile,line);
+            scores.push_back(stoi(line));
+        }
+        names.push_back(party.getName());
+        scores.push_back(milestones.getMilesTraveled());
+
+        bubbleSortHighScore(scores,names);
+
+        outFile.open("results.txt",  std::ofstream::out | std::ofstream::trunc );
+
+        for(unsigned int i = 0; i < scores.size(); i++){
+            outFile << names[i] << "\n";
+            outFile << scores[i] << "\n";
+        }
+    }
+
+}
+
 
 /**
  * Takes a minimum and maximum value and returns a random number within that range
