@@ -1411,10 +1411,13 @@ int main(){
     std::cout << "Before the start of your trip, you can visit the store and buy supplies: " << std::endl;
     std::cout << "food, oxen, bullets and wagon parts. Would you like to visit the store? Y / N " << std::endl;
 
+    Store store = Store();
+
     while(true){
         char choice;
         std::cin >> choice;
         if(choice == 'y' || choice == 'Y'){
+            initialShop(party,store);
             break;
         }
         else if(choice == 'n' || choice == 'N'){
@@ -1437,8 +1440,6 @@ int main(){
     setStartDate(time);
 
     //begin turn loop
-
-    Store store = Store();
     
     while(true){
         std::cout << time.getYear() << "-" << time.getMonth() << "-" << time.getDay() << std::endl;
