@@ -1036,6 +1036,19 @@ bool misfortune(Party &party, Time &time){
 
         if(choice == 3){//disease
             int patient = randomNumberGenerator(0,5);//random number between 0 and 4
+
+            if(patient != 4 && party.getPartyLifeAt(choice) == false){
+                for(int i = 0; i < 4; i++){
+                    if(party.getPartyLifeAt(i) == true){
+                        choice = i;
+                        break;
+                    }
+                    else if(i == 3){
+                        choice == 4;
+                    }
+                }
+                
+            }
             if(patient == 4){//you catch some disease
                 std::cout << "YOU HAVE CAUGHT " << disease << std::endl;
                     if(party.getMedKits() > 0){
